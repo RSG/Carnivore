@@ -1,0 +1,60 @@
+# this will override anything in 'etcservices_base.txt'
+# edit this file if etcservices is wrong, or if you just want to 
+# designate custom services
+#
+# MAKE SURE YOU MIMIC FORMAT or it will be parsed wrong:
+#      * use spaces, not tabs
+#      * just say it's tcp even if it's not
+#      * "keyword" must not have any spaces, hypens are ok
+#
+# if you add/change a port here, you can assign it a color by adding 
+# an entry in 'ports2colors.txt'
+
+#Keyword        Decimal    Description                     
+#-------        -------    -----------           
+ftp-data        20/tcp     FTP
+ftp             21/tcp     FTP
+ssh             22/tcp     SSH
+smtp            25/tcp     Email
+domain          53/tcp     DNS
+bootps          67/tcp     Bootstrap
+bootpc          68/tcp     Bootstrap
+http            80/tcp     Web
+pop3            110/tcp    Email
+ntp             123/tcp    Time
+netbios-ns      137/tcp    NETBIOS    
+netbios-dgm     138/tcp    NETBIOS
+netbios-ssn     139/tcp    NETBIOS
+imap            143/tcp    Email
+imap3           220/tcp    Email
+svrloc          427/tcp    Location
+https           443/tcp    Web
+ipp             631/tcp    Printing
+imaps           993/tcp    Email
+pop3s           995/tcp    Email
+cap             1026/tcp   Calendar
+ssdp            1900/tcp   SSDP
+tcoflashagent   1975/tcp   TCO
+tcoregagent     1976/tcp   TCO 
+tcoaddressbook  1977/tcp   TCO
+hsrp            1985/tcp   Hot Standby
+mmcals          2271/tcp   Meeting Maker
+mmcal           2272/tcp   Meeting Maker
+ssm-cvs         2477/tcp   SecurSight
+ssm-cvs         2477/udp   SecurSight
+ssm-cssps       2478/tcp   SecurSight
+ssm-cssps       2478/udp   SecurSight
+ssm-els         2479/tcp   SecurSight
+aol             5190/tcp   AIM
+mdns            5353/tcp   DNS
+air-tunes       6000/tcp   AirTunes
+air-tunes       6001/tcp   AirTunes
+air-tunes       6002/tcp   AirTunes
+air-tunes       6003/tcp   AirTunes
+air-tunes       6004/tcp   AirTunes
+gnutella-svc    6346/tcp   Gnutella
+gnutella-rtr    6347/tcp   Gnutella
+gnutella-svc    6348/tcp   Gnutella
+afs3-callback   7001/tcp   Cache manager
+shoutcast       8012/tcp   Shoutcast
+http            8080/tcp   Web
