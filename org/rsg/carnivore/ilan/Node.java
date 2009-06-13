@@ -32,6 +32,7 @@ public class Node  {
   public final static String IMAGES_FOLDER = "data/images/";
   public final static String ICON_LAPTOP_BLACK = IMAGES_FOLDER + "laptop_black.png";
   public final static String ICON_LAPTOP_SILVER = IMAGES_FOLDER + "laptop_silver.png";
+  public final static String ICON_SERVER_BLACK = IMAGES_FOLDER + "server_black.png";
 //  Particles particles;  
   PortStats portstats = new PortStats();
   public IPaddress ip;
@@ -135,10 +136,14 @@ public class Node  {
 
 //    particles = new Particles(this);
     // Load the images into the program 
-    if(this.isLocalhost) {
-        this.icon = CarnivoreILanPApplet.papplet.loadImage(ICON_LAPTOP_SILVER);    
+    if(this.isLAN) {
+	    if(this.isLocalhost) {
+	        this.icon = CarnivoreILanPApplet.papplet.loadImage(ICON_LAPTOP_SILVER);    
+	    } else {
+	        this.icon = CarnivoreILanPApplet.papplet.loadImage(ICON_LAPTOP_BLACK);        	
+	    }
     } else {
-        this.icon = CarnivoreILanPApplet.papplet.loadImage(ICON_LAPTOP_BLACK);        	
+        this.icon = CarnivoreILanPApplet.papplet.loadImage(ICON_SERVER_BLACK);        	
     }
 //    setIcon();
     this.touch();    

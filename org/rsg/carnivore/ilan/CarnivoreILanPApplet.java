@@ -15,6 +15,7 @@ import org.rsg.carnivore.ilan.zones.Zone3;
 import org.rsg.carnivore.ilan.zones.Zone4;
 import org.rsg.carnivore.ilan.zones.ZoneFactory;
 import org.rsg.carnivore.net.DevBPF;
+import org.rsg.carnivore.net.Fingerprints;
 import org.rsg.carnivore.Preferences;
 import org.rsg.lib.LibUtilities;
 import org.rsg.lib.chrome.Chrome;
@@ -485,11 +486,12 @@ public class CarnivoreILanPApplet extends PApplet implements ChromeListener, Car
 	
 	//CALLBACK FROM CORE
 	public void newCarnivorePacket(CarnivorePacket packet) {
-//		if(packet.isTCP()){
-////			System.out.println(Fingerprints.instance().getFingerprint(packet, FINGERPRINT_THRESHOLD));
-//		} else {
-//			//Log.debug("UDP length = " + packet.jpUDPPacket.getLength());
-//		}		
+		if(packet.isTCP()){
+			String fingerprint = Fingerprints.instance().getFingerprint(packet, FINGERPRINT_THRESHOLD);
+//			System.out.println("[Main] newCarnivorePacket fingerprint: " + fingerprint);
+		} else {
+			//Log.debug("UDP length = " + packet.jpUDPPacket.getLength());
+		}		
 
 //	    println("[Main] newCarnivorePacket (" + packet.strTransportProtocol + " packet) " + packet.senderSocket() + " > " + packet.receiverSocket() + 
 //	            " ipIdentification:" + packet.ipIdentification + " tcpSequenceNumber:" + packet.getTcpSequenceNumber());
