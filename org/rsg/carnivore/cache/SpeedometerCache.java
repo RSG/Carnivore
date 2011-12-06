@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 import org.rsg.carnivore.CarnivorePacket;
 import org.rsg.carnivore.Constants;
-import org.rsg.lib.Log;
+//import org.rsg.lib.Log;
 import org.rsg.lib.time.TimeUtilities;
 
 public class SpeedometerCache extends java.util.Stack<TimestampedObject> {
@@ -29,7 +29,7 @@ public class SpeedometerCache extends java.util.Stack<TimestampedObject> {
 				}
 			}
 		} catch (ConcurrentModificationException e) {
-			Log.debug("["+this.getClass().getName()+"] pruneToFrame ConcurrentModificationException");
+//			Log.debug("["+this.getClass().getName()+"] pruneToFrame ConcurrentModificationException");
 			try {
 				Thread.sleep(100);
 				pruneToFrame(); //recursion -- should be ok if it happens rarely 
@@ -41,31 +41,6 @@ public class SpeedometerCache extends java.util.Stack<TimestampedObject> {
 
 	public void add(CarnivorePacket p) {
 		this.add(new TimestampedObject(p));
-	}
-
-	public Stats computeStats() {
-		float total = this.size();
-		float tcp = 0;
-		float udp = 0;
-
-		try {
-			Iterator iterator = iterator();
-			while (iterator.hasNext()) {
-				TimestampedObject cto = (TimestampedObject) iterator.next();
-				CarnivorePacket carnivorepacket = (CarnivorePacket) cto.object;
-				if(carnivorepacket.intTransportProtocol == Constants.intTCP) {
-					tcp++;
-				} else if(carnivorepacket.intTransportProtocol == Constants.intUDP) {
-					udp++;
-				}
-			}
-			
-		} catch (ConcurrentModificationException e) {
-			Log.debug("["+this.getClass().getName()+"] computeStats ConcurrentModificationException");
-			computeStats();
-		}
-
-		return new Stats(total/(frame/ONE_SECOND), tcp/(frame/ONE_SECOND), udp/(frame/ONE_SECOND));
 	}
 	
 	public String toString() {

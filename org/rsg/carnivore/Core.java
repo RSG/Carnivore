@@ -14,14 +14,11 @@ import net.sourceforge.jpcap.net.Packet;
 import net.sourceforge.jpcap.net.TCPPacket;
 import net.sourceforge.jpcap.net.UDPPacket;
 
-import org.rsg.carnivore.cache.OfflineCache;
 import org.rsg.carnivore.net.Devices;
 import org.rsg.carnivore.net.IPAddress;
-import org.rsg.carnivore.tcpReassembly.ReassemblyCache;
 import org.rsg.lib.ErrorMessages;
 import org.rsg.lib.Log;
-
-import processing.core.PImage;
+//import org.rsg.lib.time.TimeUtilities;
 
 public class Core implements PacketListener {
 
@@ -40,12 +37,12 @@ public class Core implements PacketListener {
 	private String filter = FILTER_TCP_AND_UDP;
 	private ArrayList<PacketCaptureThread> packetcapturethreads = new ArrayList<PacketCaptureThread>();
 	private PacketCapture packetcapture;
-	//private PacketCacheThread cache;
 	private Devices devices;
 	public static Object parent;
     
 	public Core(Object parent) {
-		System.out.println("["+this.getClass().getName()+"] starting Carnivore core...");
+		System.out.println("["+this.getClass().getName()+"] Running Java version " + System.getProperty("java.version"));
+		System.out.println("["+this.getClass().getName()+"] Starting Carnivore Core version " + Constants.VERSION);
 		Core.parent = parent;
 		
 		//INIT DEVICES
@@ -62,12 +59,7 @@ public class Core implements PacketListener {
 		
 		//START CACHE THREAD
 		System.out.println("["+this.getClass().getName()+"] starting PacketCacheThread");
-		//cache = new PacketCacheThread();
-//		if(!PacketCacheThread.instance().isAlive()) 
-//			PacketCacheThread.instance().start();
 		PacketCacheThread.instance().start();
-
-		//cache.start();
 	}
 	
 	private void openCaptureOnEveryDevice(HashMap<?, ?> d) {
@@ -116,7 +108,6 @@ public class Core implements PacketListener {
 			System.out.println("OK");
 		}
 		PacketCacheThread.instance().stop();
-		//PacketCacheThread.instance().continueRunning = false;
 	}
 
 	public void start() {
@@ -125,18 +116,6 @@ public class Core implements PacketListener {
 			System.out.print("["+this.getClass().getName()+"] starting Packet Capture on "+ pct + "...");
 			pct.start();
 			System.out.println("OK");
-
-			//final PacketCapture p = (PacketCapture)i.next();			
-			
-			/*new Thread(new Runnable() { 
-				public void run() { 
-					try { 
-						p.capture(); //this has to be in a thread, otherwise it blocks 
-					} catch (CapturePacketException e) {
-						e.printStackTrace(); 
-					}
-				} 
-			}).start(); */
 			
 			//Log.debug("["+this.getClass().getName()+"] started capture on " + pct.toString() + " -- ready to receive packets");
 		}
@@ -146,12 +125,7 @@ public class Core implements PacketListener {
 	}
 	
 	//CALLBACK (implemented from net.sourceforge.jpcap.capture.PacketListener) -- CALLED WHENEVER A PACKET ARRIVES
-	public void packetArrived(Packet packet) {
-
-		//skip packet sniffing entirely if we're in playback mode. 
-		if(OfflineCache.instance().isPlaying)
-			return;
-		
+	public void packetArrived(Packet packet) {		
 		CarnivorePacket carnipacket = new CarnivorePacket();
 		
 		//Log.debug("["+this.getClass().getName()+"] Packet:" + packet.toString());
@@ -165,7 +139,7 @@ public class Core implements PacketListener {
 				carnipacket.strTransportProtocol = Constants.strTCP;
 				carnipacket.intTransportProtocol = Constants.intTCP;
 
-				TCPPacket tcpPacket = (TCPPacket)packet;				
+				TCPPacket tcpPacket = (TCPPacket)packet;		
 				//carnipacket.senderAddress = (IPAddress) IPAddress.getByName(tcpPacket.getSourceAddress());
 				//carnipacket.receiverAddress = (IPAddress) IPAddress.getByName(tcpPacket.getDestinationAddress());
 				carnipacket.senderAddress = new IPAddress(tcpPacket.getSourceAddress());
@@ -195,12 +169,10 @@ public class Core implements PacketListener {
 				carnipacket.setTcpHeaderLength(tcpPacket.getHeaderLength());
 				carnipacket.setTcpWindowSize(tcpPacket.getWindowSize());
 				carnipacket.setTcpPayloadDataLength(tcpPacket.getPayloadDataLength());
+				carnipacket.setReceiverMacAddress(tcpPacket.getDestinationHwAddress());
+				carnipacket.setSenderMacAddress(tcpPacket.getSourceHwAddress());
 
-				
 				PacketCacheThread.instance().addPacket(carnipacket);
-				ReassemblyCache.newPacket(carnipacket);
-				
-				//TCPSocket.newPacket(tcpPacket);
 				
 			//handle UDP packets
 			} else if(packet instanceof UDPPacket) {
@@ -255,15 +227,6 @@ public class Core implements PacketListener {
 	    	l.newCarnivorePacket(p);
 	    }
     }
-
-	public static void dispatchImage(String path) {
-	    Iterator<CarnivoreListener> i = listeners.iterator();
-	    while(i.hasNext()) {
-	    	CarnivoreListener l = (CarnivoreListener)i.next();
-	    	l.newImage(path);
-	    }
-    }
-
 	
 	public void setFilter(){
 		

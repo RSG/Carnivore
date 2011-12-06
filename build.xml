@@ -1,0 +1,56 @@
+<project name="Carnivore" default="zip" basedir=".">
+	<description>simple example build file</description>	
+	<property name="build" location="build"/>
+	<property name="docs" location="build/docs"/>
+	<property name="upload" location="upload"/>
+	<property name="buildP5" location="build/p5/carnivore"/>
+	<property name="jar" location="lib/carnivore.jar"/>
+	<property name="jarRsgLib" location="lib/rsglib.jar"/>
+	<property name="v" value="4"/> <!-- only effects the name of the zip/tar files. 
+										for app version, change value in 
+										Constants.java and library.properties -->
+
+	<!-- CLEAN -->
+	<target name="clean" description="clean up development area (but not Eclipse class files)">		
+		  <delete file="${jar}"/>
+		  <delete file="preferences.properties"/>
+		  <delete><fileset dir="." includes="Log_*.txt"/></delete>
+		  <delete><fileset dir="." includes="Carnivore_Session_*.ser"/></delete>
+	</target>
+	
+	<!-- JAR -->
+	<target name="jar" depends="clean" description="build jar">
+		  <jar destfile="${jar}" basedir=".">
+		    <include name="org/rsg/carnivore/**"/>
+		    <include name="net/**"/>
+		    <manifest><attribute name="Main-Class" value="org.rsg.carnivore.CarnivoreP5"/></manifest>
+		  </jar>
+	</target>
+
+	<!-- P5 -->
+	<target name="build" depends="jar" description="build Processing library">
+		<!-- clean -->
+		<delete dir="${buildP5}"/>
+		<mkdir  dir="${buildP5}"/>
+
+		<!-- copy jar -->
+		<copy file="${jar}" tofile="${buildP5}/library/carnivore.jar"/>		
+		<copy file="${jarRsgLib}" tofile="${buildP5}/library/rsglib.jar"/>		
+		<copy file="${jar}" tofile="/Users/alex/Documents/Processing/libraries/carnivore/library/carnivore.jar"/><!-- just to keep the local p5 up to date --> 
+
+		<!-- copy other files - the p5 lib is x-platform, so include all native libraries -->
+		<copy todir="${buildP5}"><fileset dir="${docs}" includes="*.txt"/></copy>
+		<copy todir="${buildP5}"><fileset dir="${docs}" includes="*.properties"/></copy>
+		<copy file="jpcap.dll" todir="${buildP5}/library"/>
+		<copy file="libjpcap-i386.jnilib" todir="${buildP5}/library"/>
+		<copy file="libjpcap-ppc.jnilib" todir="${buildP5}/library"/>
+		<copy file="libjpcap.so" todir="${buildP5}/library"/>				
+	</target>
+
+	<!-- ZIP -->
+	<target name="zip" depends="build" description="zip and tar the packages">
+		<property name="zipP5" value="carnivore_p5lib_v${v}.zip"/>
+		<delete file="${upload}/${zipP5}"/>
+		<zip zipfile="${upload}/${zipP5}" basedir="build/p5"/>
+	</target>
+</project>

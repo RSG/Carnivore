@@ -6,5 +6,4 @@ package org.rsg.carnivore;
  */
 public interface CarnivoreListener {
 	void newCarnivorePacket(CarnivorePacket packet);
-	void newImage(String path);
 }

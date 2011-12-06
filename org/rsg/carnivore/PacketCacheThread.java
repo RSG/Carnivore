@@ -2,12 +2,13 @@ package org.rsg.carnivore;
 
 import java.util.Stack;
 
-import org.rsg.carnivore.cache.OfflineCache;
-import org.rsg.carnivore.cache.OfflineLogger;
+//import org.rsg.carnivore.cache.OfflineCache;
+//import org.rsg.carnivore.cache.OfflineLogger;
 import org.rsg.carnivore.cache.SpeedometerCache;
-import org.rsg.carnivore.cache.Stats;
-import org.rsg.carnivore.gui.GUI;
-import org.rsg.carnivore.net.Server;
+//import org.rsg.carnivore.cache.Stats;
+//import org.rsg.carnivore.gui.GUI;
+//import org.rsg.carnivore.net.Server;
+import org.rsg.lib.time.TimeUtilities;
 
 class PacketCacheThread extends Thread {
 	public boolean continueRunning = true;
@@ -30,28 +31,6 @@ class PacketCacheThread extends Thread {
 //			System.out.println("[PacketCacheThread] run "+ TimeUtilities.dateStampSimplerPrecise());
 			
 			speedometer.pruneToFrame();
-			Stats stats = speedometer.computeStats();
-			
-			//update GUI (but only for CPE version)
-			if(Core.parent instanceof CarnivorePE) {
-    			//UPDATE PROGRESS BAR WITH PPS
-    			GUI.instance().sliderui.setVolumeCurrent(stats.packetsPerSecTotal);
-    			GUI.instance().slider.repaint();				
-    			
-    			//CLIENTS LIGHT
-    			if(Server.instance().getNumberOfClients() < 1) {
-    				GUI.instance().lightLabel1(false);
-    			} else {
-    				GUI.instance().lightLabel1(true);    				
-    			}
-
-    			//NETWORK LIGHT
-    			if(stats.packetsPerSecTotal > 0) {
-    				GUI.instance().lightLabel2(true);
-    			} else {
-    				GUI.instance().lightLabel2(false);    				
-    			}
-			}
 			
 			//each 10 millisecs... dispatch the cache, but don't go over volume limit			
 			while(	(cacheForClient.size() > 0) && (!isOverLimit())) {
@@ -69,15 +48,7 @@ class PacketCacheThread extends Thread {
 //				
 //				Log.debug("\n================================");
 				seconds++;
-				reset();
-				
-				//strobe the header
-				if(		OfflineCache.instance().isRecording || 
-						OfflineCache.instance().isPlaying ||
-						OfflineLogger.instance().isLogging) {
-					GUI.instance().toggleHeader();
-				}
-								
+				reset();		
 			}
 			
 			try {
@@ -105,7 +76,7 @@ class PacketCacheThread extends Thread {
 	}
 	
 	public void addPacket(CarnivorePacket p) {
-//		System.out.println("[PacketCacheThread] addPacket "+ TimeUtilities.dateStampSimplerPrecise());
+		System.out.println("[PacketCacheThread] addPacket "+ TimeUtilities.dateStampSimplerPrecise());
 		cacheForClient.add(p);
 		speedometer.add(p);
 	}

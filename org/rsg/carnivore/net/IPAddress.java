@@ -3,7 +3,6 @@ package org.rsg.carnivore.net;
 import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-
 import org.rsg.carnivore.Constants;
 import org.rsg.lib.Log;
 
@@ -60,7 +59,7 @@ public class IPAddress implements Serializable {
 	 * @return The fourth octet of the IP address.
 	 */
 	public int octet4() { return (int) Integer.valueOf(getOctetsFromIP()[3]); }
-	
+	  
 	public String toString() {
 		return ip.getHostAddress();
 	}

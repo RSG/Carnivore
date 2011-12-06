@@ -92,10 +92,7 @@ public class Preferences {
 		shouldSaveOrLoad = false;
 		put(Constants.CHANNEL, 						Constants.DEFAULT_CHANNEL);
 		put(Constants.SHOULD_SKIP_UDP, 				Constants.DEFAULT_SHOULD_SKIP_UDP);
-		put(Constants.SHOULD_SHOW_CONSOLE, 			Constants.DEFAULT_SHOW_CONSOLE);
-		put(Constants.SHOULD_ALLOW_EXTERNAL_CLIENTS,Constants.DEFAULT_SHOULD_ALLOW_EXTERNAL_CLIENTS);
 		put(Constants.MAXIMUM_VOLUME, 				Constants.DEFAULT_MAXIMUM_VOLUME);
-		put(Constants.SERVER_PORT, 					Constants.DEFAULT_SERVER_PORT);
 		shouldSaveOrLoad = true;
 	}
 }

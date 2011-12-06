@@ -2,11 +2,6 @@ package org.rsg.carnivore;
 
 import java.io.Serializable;
 import java.util.Date;
-
-//import net.sourceforge.jpcap.net.IPPacket;
-import net.sourceforge.jpcap.net.TCPPacket;
-import net.sourceforge.jpcap.net.UDPPacket;
-
 import org.rsg.carnivore.net.IPAddress;
 import org.rsg.lib.LibUtilities;
 
@@ -109,11 +104,29 @@ public class CarnivorePacket implements Serializable {
 	private int tcpHeaderLength;
 	private int tcpPayloadDataLength;
 	
+	private String senderMacAddress; 
+	private String receiverMacAddress; 
 	
 //	public TCPPacket jpTCPPacket; 
 
 //	public UDPPacket jpUDPPacket;
 	
+	public String getSenderMacAddress() {
+		return senderMacAddress;
+	}
+
+	public void setSenderMacAddress(String senderMacAddress) {
+		this.senderMacAddress = senderMacAddress;
+	}
+
+	public String getReceiverMacAddress() {
+		return receiverMacAddress;
+	}
+
+	public void setReceiverMacAddress(String receiverMacAddress) {
+		this.receiverMacAddress = receiverMacAddress;
+	}
+
 	/**
 	 * Constructor -- does nothing. 
 	 */
@@ -223,47 +236,6 @@ public class CarnivorePacket implements Serializable {
 		return this.senderSocket() + "-" + this.receiverSocket();
 	}
 	
-//	public long previous() {
-//		//SYN
-//		if(jpTCPPacket.isSyn() && !jpTCPPacket.isAck()) {
-//			//no parent 
-//		//SYN ACK
-//		} else if(jpTCPPacket.isSyn() && jpTCPPacket.isAck()) {
-//			return this.jpTCPPacket.getAcknowledgementNumber();
-//		//PSH
-//		} else if(jpTCPPacket.isPsh()) {
-//			return this.jpTCPPacket.getSequenceNumber();			
-//		//FIN
-//		} else if(jpTCPPacket.isFin()) {
-//			return this.jpTCPPacket.getSequenceNumber();			
-//		//ACK
-//		} else if(jpTCPPacket.isAck()) {
-//			return this.jpTCPPacket.getSequenceNumber();			
-//		}
-//		return -1;
-//	}
-//
-//	public long next() {
-//		//SYN
-//		if(jpTCPPacket.isSyn() && !jpTCPPacket.isAck()) {
-//			return this.jpTCPPacket.getSequenceNumber() + 1;
-//		//SYN ACK
-//		} else if(jpTCPPacket.isSyn() && jpTCPPacket.isAck()) {
-//			return this.jpTCPPacket.getAcknowledgementNumber();			
-//		//PSH
-//		} else if(jpTCPPacket.isPsh()) {
-//			return this.jpTCPPacket.getAcknowledgementNumber();			
-//		//FIN
-//		} else if(jpTCPPacket.isFin()) {
-//			return this.jpTCPPacket.getAcknowledgementNumber();			
-//		//ACK
-//		} else if(jpTCPPacket.isAck()) {
-//			return (jpTCPPacket.getSequenceNumber() + jpTCPPacket.getPayloadDataLength());
-//			//none? 
-//		}		
-//		return -1;
-//	}
-
 	public String flagsToString() {
 		String s = "[";
 		s += (isSyn()) ? "SYN " : "    ";

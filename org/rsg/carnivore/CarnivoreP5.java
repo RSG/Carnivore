@@ -3,7 +3,8 @@ package org.rsg.carnivore;
 import java.lang.reflect.Method;
 
 import org.rsg.carnivore.net.DevBPF;
-import org.rsg.lib.ErrorMessages;
+//import org.rsg.carnivore.net.IPAddress;
+//import org.rsg.lib.ErrorMessages;
 import org.rsg.lib.LibUtilities;
 import org.rsg.lib.Log;
 
@@ -122,8 +123,4 @@ public class CarnivoreP5 implements CarnivoreListener {
 //		}
 	}
 
-	public void newImage(String path) {
-		// TODO Auto-generated method stub
-		
-	}
 }
