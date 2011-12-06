@@ -1,0 +1,8 @@
+In order to get the source to compile you will need the following in your build path:
+
+1) lib/rsglib.jar (provided)
+
+2) the core.jar file from Processing (not provided)
+
+3) the net.sourceforge.jpcap files (not provided) 
+
