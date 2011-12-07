@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry excluding="org/rsg/iLAN/|org/rsg/iLAN3D/|org/rsg/iLAN3D_v2/|CPEdocs/|CPEresources/|data/|iLANdocs/|jar/|lib/|net/roydesign/mac/JD2AppleEventFunctions.java|net/roydesign/mac/JD2AppleEventHandlerThunk.java|net/roydesign/mac/JD3AppleEventHandlerThunk.java|org/rsg/carnivore/iLan.java|org/rsg/carnivore/CarnivoreConsole.java|org/rsg/carnivore/ilan/sketch_CP5_iLan_v6.java|org/rsg/carnivore/ilan/AutoArrange.java|org/rsg/carnivore/ilan/link/Particles.java|org/rsg/carnivore/ilan/WaypointSegment.java|org/rsg/lib/|processing/|upload/|org/rsg/carnivore/ilan/IPaddress.java|org/rsg/interfascia_v2/|build/|org/rsg/carnivore/ilan/|org/rsg/carnivore/gui/|org/rsg/carnivore/tcpReassembly/|org/rsg/carnivore/net/Server.java|org/rsg/carnivore/net/Client.java|org/rsg/carnivore/net/Fingerprint.java|org/rsg/carnivore/net/Fingerprints.java|org/rsg/carnivore/net/FingerprintsQueryResults.java|org/rsg/carnivore/net/MacAddressLookup.java|org/rsg/carnivore/net/Net.java|org/rsg/carnivore/net/Node.java|org/rsg/carnivore/net/ZoneScanner.java|org/rsg/carnivore/CarnivorePE.java|org/rsg/carnivore/MacEventHandler.java|org/rsg/carnivore/OfflineThread.java|org/rsg/carnivore/cache/OfflineCache.java|org/rsg/carnivore/cache/OfflineLogger.java|net/roydesign/|org/rsg/carnivore/cache/Stats.java" kind="src" path=""/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/rsglib.jar"/>
-	<classpathentry kind="lib" path="lib/processing_v1/core.jar"/>
-	<classpathentry kind="output" path=""/>
-</classpath>
