@@ -1,8 +1,16 @@
-In order to get the source to compile you will need the following in your build path:
+Carnivore source code is available under the GPL from https://github.com/RSG/Carnivore
 
-1) lib/rsglib.jar (provided)
 
-2) the core.jar file from Processing (not provided)
 
-3) the net.sourceforge.jpcap files (not provided) 
+In order to get the source to compile you will need to add the following to your build path:
 
+1) lib/rsglib.jar
+
+2) lib/processing_v1/core.jar
+
+
+
+The ant file (build.xml) will create the library inside build/p5. 
+It will also try to copy the new carnivore jar files over to your Processing
+library folder (example /Users/alex/Documents/Processing/libraries/carnivore/library/carnivore.jar). 
+So if everything builds okay, simply relaunch Processing and run the sketch.
