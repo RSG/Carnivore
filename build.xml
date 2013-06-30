@@ -6,7 +6,7 @@
 	<property name="buildP5" location="build/p5/carnivore"/>
 	<property name="jar" location="lib/carnivore.jar"/>
 	<property name="jarRsgLib" location="lib/rsglib.jar"/>
-	<property name="v" value="4"/> <!-- only effects the name of the zip/tar files. 
+	<property name="v" value="5"/> <!-- only effects the name of the zip/tar files. 
 										for app version, change value in 
 										Constants.java and library.properties -->
 
