@@ -1,3 +1,8 @@
+Verson 5, June 2013
++ Small fixes for compatibility with Processing 2
+
+--------------------------------------------------------------------
+
 Verson 4, December 2011
 + Ended support for CarnivorePE, in favor of the Processing Library
 
