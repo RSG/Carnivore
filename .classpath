@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry excluding="build/|lib/|upload/" kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/rsglib.jar"/>
 	<classpathentry kind="lib" path="lib/processing_v2/core.jar"/>
+	<classpathentry kind="lib" path="lib/rsglib.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

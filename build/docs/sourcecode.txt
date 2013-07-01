@@ -6,7 +6,7 @@ In order to get the source to compile you will need to add the following to your
 
 1) lib/rsglib.jar
 
-2) lib/processing_v1/core.jar
+2) lib/processing_v2/core.jar
 
 
 
