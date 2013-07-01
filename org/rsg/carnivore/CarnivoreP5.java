@@ -33,7 +33,7 @@ public class CarnivoreP5 implements CarnivoreListener {
 
 		//REGISTER "DISPOSE" CALLBACK
 		this.parent = parent;
-		parent.registerDispose(this);
+		parent.registerMethod("dispose", this);
 
 		try {
 			packetEventMethod = parent.getClass().getMethod("packetEvent", new Class[] { CarnivorePacket.class });
