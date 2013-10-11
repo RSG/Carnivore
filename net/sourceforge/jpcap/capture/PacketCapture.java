@@ -9,6 +9,8 @@ package net.sourceforge.jpcap.capture;
 
 import java.util.Locale;
 
+import org.rsg.carnivore.OSValidator;
+
 /**
  * This class is the core of packet capture in jpcap. It provides a 
  * high-level interface for capturing network packets by encapsulating 
@@ -156,23 +158,57 @@ public class PacketCapture extends PacketCaptureBase implements PacketCaptureCap
 
 	// static initialization
 	static {
-		//System.out.print("[net.sourceforge.jpcap.capture.PacketCapture] loading native library jpcap... ");
+//		System.out.println("[net.sourceforge.jpcap.capture.PacketCapture] " + OSValidator.toMessage());
+		System.out.print("[net.sourceforge.jpcap.capture.PacketCapture] loading native library jpcap... ");
 		//public static String LIB_PCAP_WRAPPER = "jpcap";
+		String s = "";
 		
+		//win
+		if(OSValidator.isWindows()) {
+//			System.out.print("Windows...") ;
+			if(OSValidator.is32bit()) {
+//				System.out.print("32 bit");
+				s = "jpcap-win32bit";
+//				System.loadLibrary("jpcap-win32bit");
+			} else if(OSValidator.is64bit()) {
+//				System.out.print("64 bit");
+				s = "jpcap-win64bit";
+//				System.loadLibrary("jpcap-win64bit");
+			}		
+			
 		//mac
-		if(System.getProperty("os.name").toLowerCase(Locale.US).indexOf("mac") != -1) {
+		} else if(OSValidator.isMac()) {
+//		if(System.getProperty("os.name").toLowerCase(Locale.US).indexOf("mac") != -1) {
+//			System.out.print("Mac...");
 			//this chooses the libjpcap*.jnilib library file for jpcap (Mac only)
 			if(System.getProperty("os.arch").toLowerCase(Locale.US).indexOf("i386") != -1) {
-				System.loadLibrary("jpcap-i386");
+//				System.out.print("i386");
+//				System.loadLibrary("jpcap-i386");
+				s = "jpcap-i386";
 			} else if(System.getProperty("os.arch").toLowerCase(Locale.US).indexOf("ppc") != -1) {
-				System.loadLibrary("jpcap-ppc");
+//				System.out.print("ppc");
+//				System.loadLibrary("jpcap-ppc");
+				s = "jpcap-ppc";
 			} 
 
-		//win + linux
+		//Linux
+		} else if (OSValidator.isUnix()){
+//			System.out.print("Linux...");
+			if(OSValidator.is32bit()) {
+//				System.out.print("32 bit");
+//				System.loadLibrary("jpcap-linux32bit");
+				s = "jpcap-linux32bit";
+			} else if(OSValidator.is64bit()) {
+//				System.out.print("64 bit");
+//				System.loadLibrary("jpcap-linux64bit");
+				s = "jpcap-linux64bit";
+			}		
 		} else {
-			System.loadLibrary("jpcap");
+			s = "(warning: OS not supported)";
 		}
-		//System.out.println("ok");
+		
+		System.out.println(s);		
+		System.loadLibrary(s);
 	}
 
 	private int instanceNum = 0; // the index of this instance
