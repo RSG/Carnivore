@@ -1,9 +1,14 @@
-Verson 5, June 2013
+Version 6, October 11, 2013
++ Added better native library support for 32/64 bit systems
+
+--------------------------------------------------------------------
+
+Version 5, June 2013
 + Small fixes for compatibility with Processing 2
 
 --------------------------------------------------------------------
 
-Verson 4, December 2011
+Version 4, December 2011
 + Ended support for CarnivorePE, in favor of the Processing Library
 
 --------------------------------------------------------------------

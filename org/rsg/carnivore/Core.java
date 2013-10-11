@@ -41,6 +41,7 @@ public class Core implements PacketListener {
 	public static Object parent;
     
 	public Core(Object parent) {
+		System.out.println("["+this.getClass().getName()+"] " + OSValidator.toMessage());
 		System.out.println("["+this.getClass().getName()+"] Running Java version " + System.getProperty("java.version"));
 		System.out.println("["+this.getClass().getName()+"] Starting Carnivore Core version " + Constants.VERSION);
 		Core.parent = parent;

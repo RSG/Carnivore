@@ -76,7 +76,7 @@ class PacketCacheThread extends Thread {
 	}
 	
 	public void addPacket(CarnivorePacket p) {
-		System.out.println("[PacketCacheThread] addPacket "+ TimeUtilities.dateStampSimplerPrecise());
+//		System.out.println("[PacketCacheThread] addPacket "+ TimeUtilities.dateStampSimplerPrecise());
 		cacheForClient.add(p);
 		speedometer.add(p);
 	}
