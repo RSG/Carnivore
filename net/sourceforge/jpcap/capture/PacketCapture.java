@@ -189,7 +189,7 @@ public class PacketCapture extends PacketCaptureBase implements PacketCaptureCap
 //				System.out.print("ppc");
 //				System.loadLibrary("jpcap-ppc");
 				s = "jpcap-ppc";
-			}   
+			}    
 
 		//Linux
 		} else if (OSValidator.isUnix()){
