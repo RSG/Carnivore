@@ -217,3 +217,4 @@ public class PacketCapture extends PacketCaptureBase implements PacketCaptureCap
 	private String _rcsid = 
 		"$Id: PacketCapture.java,v 1.16 2004/09/28 17:27:11 pcharles Exp $";
 }
+
