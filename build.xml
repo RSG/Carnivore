@@ -41,6 +41,7 @@
 		<!-- copy other files - the p5 lib is x-platform, so include all native libraries -->
 		<copy todir="${buildP5}"><fileset dir="${docs}" includes="*.txt"/></copy>
 		<copy todir="${buildP5}"><fileset dir="${docs}" includes="*.properties"/></copy>
+		<copy todir="${buildP5}"><fileset dir="${docs}" includes="*.zip"/></copy>
 		<copy file="jpcap-win32bit.dll" todir="${buildP5}/library"/>
 		<copy file="jpcap-win64bit.dll" todir="${buildP5}/library"/>
 		<copy file="libjpcap-i386.jnilib" todir="${buildP5}/library"/>
