@@ -102,13 +102,14 @@ public class Core implements PacketListener {
 
 
 	public void stop() {
+		System.out.println("[Core] stop");
 		for(int i = 0; i < packetcapturethreads.size(); i++){
 			PacketCaptureThread pct = (PacketCaptureThread) packetcapturethreads.get(i);
 			System.out.print("["+this.getClass().getName()+"] stopping Packet Capture on "+ pct + "...");
 			pct.stopCapture();
 			System.out.println("OK");
 		}
-		PacketCacheThread.instance().stop();
+		PacketCacheThread.instance().continueRunning = false; //instance().stop();
 	}
 
 	public void start() {
