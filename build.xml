@@ -6,7 +6,7 @@
 	<property name="buildP5" location="build/p5/carnivore"/>
 	<property name="jar" location="lib/carnivore.jar"/>
 	<property name="jarRsgLib" location="lib/rsglib.jar"/>
-	<property name="v" value="6"/> <!-- only effects the name of the zip/tar files. 
+	<property name="v" value="7"/> <!-- only effects the name of the zip/tar files. 
 										for app version, change value in 
 										Constants.java and library.properties -->
 
@@ -36,19 +36,21 @@
 		<!-- copy jar -->
 		<copy file="${jar}" tofile="${buildP5}/library/carnivore.jar"/>		
 		<copy file="${jarRsgLib}" tofile="${buildP5}/library/rsglib.jar"/>		
-		<copy file="${jar}" tofile="/Users/alex/Documents/Processing/libraries/carnivore/library/carnivore.jar"/><!-- just to keep the local p5 up to date --> 
+		<copy file="${jar}" tofile="/Users/alex/Dropbox/Processing/libraries/carnivore/library/carnivore.jar"/><!-- just to keep the local p5 up to date --> 
 
 		<!-- copy other files - the p5 lib is x-platform, so include all native libraries -->
 		<copy todir="${buildP5}"><fileset dir="${docs}" includes="*.txt"/></copy>
 		<copy todir="${buildP5}"><fileset dir="${docs}" includes="*.properties"/></copy>
 		<copy todir="${buildP5}"><fileset dir="${docs}" includes="*.zip"/></copy>
+		
+		<copy file="libjpcap.jnilib" todir="${buildP5}/library"/>
+		<!-- 
 		<copy file="jpcap-win32bit.dll" todir="${buildP5}/library"/>
 		<copy file="jpcap-win64bit.dll" todir="${buildP5}/library"/>
-		<copy file="libjpcap-i386.jnilib" todir="${buildP5}/library"/>
-		<copy file="libjpcap-ppc.jnilib" todir="${buildP5}/library"/>
 		<copy file="libjpcap-linux32bit.so" todir="${buildP5}/library"/>				
 		<copy file="libjpcap-linux64bit.so" todir="${buildP5}/library"/>				
-		<copy file="libpcap.so.0.8" todir="${buildP5}/library"/>				
+		<copy file="libpcap.so.0.8" todir="${buildP5}/library"/>		
+		-->		
 	</target>
 
 	<!-- ZIP -->

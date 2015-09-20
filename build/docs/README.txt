@@ -1,8 +1,8 @@
 MAC
 
-Java 1.6 is required. Use "Software Update" to install all Java and Mac
+Java 1.7 is required. Use "Software Update" to install all Java and Mac
 system updates. Use the command `java -version` to make sure you have
-version 1.6.
+version 1.7.
 
 Note: you must do this Terminal command each time you restart your mac:
 
@@ -12,8 +12,8 @@ Note: you must do this Terminal command each time you restart your mac:
 
 WINDOWS
 
-Java 1.6 is required. Use the command `java -version` to make sure you
-have version 1.6.
+Java 1.7 is required. Use the command `java -version` to make sure you
+have version 1.7.
 
 Winpcap (www.winpcap.org) is required.
 

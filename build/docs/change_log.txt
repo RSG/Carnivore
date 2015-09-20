@@ -1,3 +1,10 @@
+Version 7, September, 2015
++ Dropped legacy support for Mac PPC and 32 bit systems
++ Updated to current JVM
++ Small fixes for compatibility with Processing 3
+
+--------------------------------------------------------------------
+
 Version 6, October 11, 2013
 + Added better native library support for 32/64 bit systems
 

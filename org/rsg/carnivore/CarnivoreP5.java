@@ -3,6 +3,7 @@ package org.rsg.carnivore;
 import java.lang.reflect.Method;
 
 import org.rsg.carnivore.net.DevBPF;
+import org.rsg.lib.ErrorMessages;
 //import org.rsg.carnivore.net.IPAddress;
 //import org.rsg.lib.ErrorMessages;
 import org.rsg.lib.LibUtilities;
@@ -111,16 +112,17 @@ public class CarnivoreP5 implements CarnivoreListener {
 	 * will quit if Mac machines are not in promiscuous
 	 */
 	private void checkBPFforMac() {
+//		System.out.println("[CarnivoreP5.checkBPFforMac] LibUtilities.isMac(): "+ LibUtilities.isMac());
 		if (!LibUtilities.isMac()) return;	//return if not a mac 
 		
 		DevBPF devbpf = new DevBPF();
 		isMacAndPromiscuousModeFailed = !devbpf.isPromiscuous;
 		
-//		if(!devbpf.isPromiscuous) {
-//			System.err.println(ErrorMessages.MAC_NOT_PROMISCUOUS);
-//			System.exit(0);
+		if(!devbpf.isPromiscuous) {
+			System.err.println(ErrorMessages.MAC_NOT_PROMISCUOUS);
+			System.exit(0);
 //			return false; 
-//		}
+		}
 	}
 
 }
