@@ -166,43 +166,40 @@ public class PacketCapture extends PacketCaptureBase implements PacketCaptureCap
 		//win
 		if(OSValidator.isWindows()) {
 //			System.out.print("Windows...") ;
+			
+			s = "jpcap-win64bit";
+			
 			if(OSValidator.is32bit()) {
 //				System.out.print("32 bit");
 				s = "jpcap-win32bit";
 //				System.loadLibrary("jpcap-win32bit");
-			} else if(OSValidator.is64bit()) {
-//				System.out.print("64 bit");
-				s = "jpcap-win64bit";
-//				System.loadLibrary("jpcap-win64bit");
-			}		
+			} 	
 			
 		//mac
 		} else if(OSValidator.isMac()) {
 //		if(System.getProperty("os.name").toLowerCase(Locale.US).indexOf("mac") != -1) {
 //			System.out.print("Mac...");
 			//this chooses the libjpcap*.jnilib library file for jpcap (Mac only)
-			if(System.getProperty("os.arch").toLowerCase(Locale.US).indexOf("i386") != -1) {
+			
+			s = "jpcap-i386";
+			
+			if(System.getProperty("os.arch").toLowerCase(Locale.US).indexOf("ppc") != -1) {
 //				System.out.print("i386");
 //				System.loadLibrary("jpcap-i386");
-				s = "jpcap-i386";
-			} else if(System.getProperty("os.arch").toLowerCase(Locale.US).indexOf("ppc") != -1) {
-//				System.out.print("ppc");
-//				System.loadLibrary("jpcap-ppc");
 				s = "jpcap-ppc";
-			}    
+			}   
 
 		//Linux
 		} else if (OSValidator.isUnix()){
 //			System.out.print("Linux...");
+			
+			s = "jpcap-linux64bit";
+			
 			if(OSValidator.is32bit()) {
 //				System.out.print("32 bit");
 //				System.loadLibrary("jpcap-linux32bit");
 				s = "jpcap-linux32bit";
-			} else if(OSValidator.is64bit()) {
-//				System.out.print("64 bit");
-//				System.loadLibrary("jpcap-linux64bit");
-				s = "jpcap-linux64bit";
-			}		
+			} 	
 		} else {
 			s = "(warning: OS not supported)";
 		}
