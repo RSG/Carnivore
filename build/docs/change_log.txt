@@ -1,4 +1,7 @@
 Version 7, September, 2015
++ Compiled new libjpcap.jnilib for 64 bit Macs
++ Compiled new libjpcap-linux64bit.so for 64 bit Ubuntu Linux 
++ Created README-Linux.txt 
 + Dropped legacy support for Mac PPC and 32 bit systems
 + Updated to current JVM
 + Small fixes for compatibility with Processing 3
