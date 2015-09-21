@@ -82,6 +82,7 @@ public class Core implements PacketListener {
 
 					//this is generally a windows exception
 					System.err.println("["+this.getClass().getName()+"] Warning -- can't open device \"" + name + "\" (CaptureDeviceOpenException)");
+					System.err.println(e);
 					break;
 				}
 				Log.debug("["+this.getClass().getName()+"] opened capture on device \"" + name + "\"");
