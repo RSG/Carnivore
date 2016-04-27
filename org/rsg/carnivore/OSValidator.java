@@ -39,7 +39,11 @@ public class OSValidator {
 	public static boolean is64bit() {
 		return OS_BITS.equals("64");
 	}
-	
+
+	public static boolean isARM() {
+		return (OS_ARCH.toLowerCase().indexOf("arm") >= 0);
+	}
+
 	public static boolean isWindows() {
 		return (OS_NAME.toLowerCase().indexOf("win") >= 0);
 	}

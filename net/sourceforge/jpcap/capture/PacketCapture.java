@@ -196,8 +196,11 @@ public class PacketCapture extends PacketCaptureBase implements PacketCaptureCap
 //			System.out.print("Linux...");
 			
 			s = "jpcap-linux64bit";
-			
-			if(OSValidator.is32bit()) {
+
+			if(OSValidator.isARM()) {
+				s = "jpcap-linuxARM";
+				
+			} else if(OSValidator.is32bit()) {
 //				System.out.print("32 bit");
 //				System.loadLibrary("jpcap-linux32bit");
 				s = "jpcap-linux32bit";

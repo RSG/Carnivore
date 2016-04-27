@@ -1,3 +1,8 @@
+Version 8, April, 2016
++ Added support for ARM Linux architecture (for Raspberry Pi)
+
+--------------------------------------------------------------------
+
 Version 7, September, 2015
 + Compiled new libjpcap.jnilib for 64 bit Macs
 + Compiled new libjpcap-linux64bit.so for 64 bit Ubuntu Linux 
